@@ -13,7 +13,10 @@ def index(request):
     # request.send_header('Access-Control-Allow-Origin', '*')
     # get the image by name can be changed
 
-    # base64_image_str = request.POST['croppedImage']
+    # if image name requested
+    requestedImage = request.GET.get('image', False)
+
+    print(requestedImage)
     base64_image_str = request.POST.get('croppedImage', False)
 
     if base64_image_str:
@@ -34,4 +37,18 @@ def index(request):
             f.write(imgdata)
 
     #     return response
-    return HttpResponse("Hello, world. You're at the polls index.")
+    # return HttpResponse("Hello, world. You're at the polls index.")
+
+    # fsock = open("1487426109.6448364.jpg", "rb")
+    # return HttpResponse(fsock)
+    if requestedImage:
+        try:
+            with open(requestedImage, "rb") as f:
+                return HttpResponse(f.read(), content_type="image/jpeg")
+        except IOError:
+            red = Image.new('RGBA', (1, 1), (255, 0, 0, 0))
+            response = HttpResponse(content_type="image/jpeg")
+            red.save(response, "JPEG")
+            return response
+    else:
+        return HttpResponse("request image not found")
