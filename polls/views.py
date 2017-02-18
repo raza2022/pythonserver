@@ -45,6 +45,6 @@ def index(request):
             with open(requestedImage, "rb") as f:
                 return HttpResponse(f.read(), content_type="image/jpeg")
         except IOError:
-            HttpResponse("request image not found")
+            return HttpResponse("sorry request image not found")
     else:
-        return HttpResponse("request image not found")
+        return HttpResponse("Operation up and running")
