@@ -27,11 +27,13 @@ DEBUG = True
 
 ALLOWED_HOSTS = [
 '127.0.0.1',
+'ancient-mesa-28439.herokuapp.com',
 'gentle-tor-25818.herokuapp.com'
 ]
 
 CORS_ORIGIN_WHITELIST = (
     '127.0.0.1',
+    'ancient-mesa-28439.herokuapp.com',
     'gentle-tor-25818.herokuapp.com'
 )
 
