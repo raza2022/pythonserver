@@ -16,7 +16,6 @@ def index(request):
     # if image name requested
     requestedImage = request.GET.get('image', False)
 
-    print(requestedImage)
     base64_image_str = request.POST.get('croppedImage', False)
 
     if base64_image_str:
@@ -32,7 +31,7 @@ def index(request):
     # give unique file name and save in DB
         dt = time.time()
         filename = str(dt) + '.jpg'
-        print (filename)
+        print(filename)
         with open(filename, 'wb') as f:
             f.write(imgdata)
 
@@ -46,9 +45,6 @@ def index(request):
             with open(requestedImage, "rb") as f:
                 return HttpResponse(f.read(), content_type="image/jpeg")
         except IOError:
-            red = Image.new('RGBA', (1, 1), (255, 0, 0, 0))
-            response = HttpResponse(content_type="image/jpeg")
-            red.save(response, "JPEG")
-            return response
+            HttpResponse("request image not found")
     else:
         return HttpResponse("request image not found")
