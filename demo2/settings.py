@@ -25,7 +25,9 @@ SECRET_KEY = 'zd-+0#=r+2nd-47^-^up_njsn&7fg*1k_cpfp222c5b&sz(do0'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = [
+'gentle-tor-25818.herokuapp.com'
+]
 
 CORS_ORIGIN_ALLOW_ALL = True
 
