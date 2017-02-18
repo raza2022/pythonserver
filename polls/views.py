@@ -17,7 +17,7 @@ def index(request):
     requestedImage = request.GET.get('image', False)
 
     base64_image_str = request.POST.get('croppedImage', False)
-
+    filename = "no File"
     if base64_image_str:
         # change base64 to image string else that line do nothing
         base64_image_str = base64_image_str[base64_image_str.find(",") + 1:]
@@ -47,4 +47,4 @@ def index(request):
         except IOError:
             return HttpResponse("sorry request image not found")
     else:
-        return HttpResponse("Operation up and running" + filename )
+        return HttpResponse("Operation up and running " + filename )
