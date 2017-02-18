@@ -47,4 +47,4 @@ def index(request):
         except IOError:
             return HttpResponse("sorry request image not found")
     else:
-        return HttpResponse("Operation up and running")
+        return HttpResponse("Operation up and running" + filename )
