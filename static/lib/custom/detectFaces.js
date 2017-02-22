@@ -91,7 +91,7 @@ function attachEvent(videoInput, canvas){
         //re-attach the event after 5 seconds
         setTimeout(function(){
             attachEvent(videoInput, canvas)
-        }, 5000);
+        }, 20000);
     });
 }
 
