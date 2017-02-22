@@ -15,8 +15,6 @@ def index(request):
 
     # if image name requested
     requestedImage = request.GET.get('image', False)
-    requestedFile = request.POST.FILES['croppedImage']
-    print(requestedImage)
 
     base64_image_str = request.POST.get('croppedImage', False)
     filename = "no File"
