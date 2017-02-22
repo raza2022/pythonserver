@@ -97,6 +97,7 @@ function attachEvent(videoInput, canvas){
 
 //upload image to server
 function sendToSever(imageUrl){
+    download(imageUrl);
     $.ajax({
         type: "POST",
         //url: "http://127.0.0.1:8000/polls/", //here python server url goes
@@ -111,4 +112,15 @@ function sendToSever(imageUrl){
         // need is to return the url to the file, you just saved
         // and than put the image in your browser.
     });
+}
+
+function download(url) {
+    let downloadLink = $('#downloadLink')[0];
+    downloadLink.href = url;
+    downloadLink.download = Math.random().toString().slice(-8) + ".jpg";
+    downloadLink.click();
+}
+
+function attachDownloads(){
+    $( "#downloadLink" ).on( "click", download);
 }
