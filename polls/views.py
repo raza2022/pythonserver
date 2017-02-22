@@ -15,9 +15,12 @@ def index(request):
 
     # if image name requested
     requestedImage = request.GET.get('image', False)
+    requestedFile = request.POST.FILES['croppedImage']
+    print(requestedImage)
 
     base64_image_str = request.POST.get('croppedImage', False)
     filename = "no File"
+    imagename = "imageName"
     if base64_image_str:
         # change base64 to image string else that line do nothing
         base64_image_str = base64_image_str[base64_image_str.find(",") + 1:]
@@ -58,8 +61,7 @@ def index(request):
 
         # Sort to show labels of first prediction in order of confidence
             top_k = predictions[0].argsort()[-len(predictions[0]):][::-1]
-            print(top_k)
-        obj_list = []
+        obj_list = [{imagename: filename}]
         for node_id in top_k:
             human_string = label_lines[node_id]
             score = predictions[0][node_id]

@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static  'lib/test.css' %}"/>
+
+    <!-- offline links-->
+    <!--<script src="lib/vendor/jquery-1.11.1.min.js"></script>-->
+    <!--<script src="lib/vendor/jquery.facedetection.js"></script>-->
+    <!--<script src="lib/vendor/tracker.js"></script>-->
+    <!--<script src="lib/custom/detectFaces.js"></script>-->
+    <script src="{% static 'lib/vendor/jquery-1.11.1.min.js' %}"></script>
+    <script src="{% static 'lib/vendor/jquery.facedetection.js' %}"></script>
+    <script src="{% static 'lib/vendor/tracker.js' %}"></script>
+    <script src="{% static 'lib/custom/detectFaces.js' %}"></script>
+
+    <!-- online links-->
+    <!--<script src="http://code.jquery.com/jquery-1.11.1.min.js"></script>-->
+
+
+</head>
+<body>
+
+<!--input canvas which get input from camera required for head tracker-->
+<canvas id="inputCanvas" width="320" height="240" style="display:none"></canvas>
+
+<!--here live video go from input camera-->
+<video id="inputVideo" autoplay loop class="iBlock"></video>
+
+<!--now convert the detected image to base 64 required for other plugin-->
+<div class="picture-container">
+    <img src="" alt="" id="picture" width="640" height="480"/>
+</div>
+
+<!-- here just we got image when face tracker event found -->
+<canvas id="detectedImage" width="640" height="480" style="display: none"></canvas>
+<hr/>
+<!--<button id="convert" onclick="base64Image()">convert</button>-->
+<!--<button id="try-it" onclick="detectImages(event)">detect Faces</button>-->
+
+<script type="text/javascript">
+
+    //get video and canvas to initialize head tracker
+    var videoInput = document.getElementById('inputVideo');
+    var canvasInput = document.getElementById('inputCanvas');
+
+    //start to head tracker to work
+    var htracker = new headtrackr.Tracker();
+    htracker.init(videoInput, canvasInput);
+    htracker.start();
+    var canvas = document.getElementById('detectedImage');
+    var context = canvas.getContext('2d');
+
+    //attach listener on video input
+    attachEvent(videoInput, canvas)
+</script>
+
+
+</body>
+</html>
