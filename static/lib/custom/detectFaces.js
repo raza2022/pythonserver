@@ -66,7 +66,7 @@ function cropImages ( f, index ){
         ctx1.putImageData(croppedImage, 0, 0);
 
         //TODO:here we modify the image to server instead of append in body
-        sendToSever(canvasObjects[index].toDataURL());
+        sendToSever(canvasObjects[index].toDataURL("image/jpeg"));
 
         //all done just append the canvas to body
         body.appendChild(canvasObjects[index])
